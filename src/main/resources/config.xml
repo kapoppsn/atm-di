@@ -12,7 +12,7 @@
     <bean id="atm" class="atm.ATM">
         <constructor-arg ref="bank"/>
     </bean>
-    <bean id="atmSimulator" class="atm.ATMSimulator">
+    <bean id="atmSim" class="atm.ATMSimulator">
         <constructor-arg ref="atm"/>
     </bean>
 
