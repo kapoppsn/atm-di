@@ -1,12 +1,15 @@
 package atmwithdatabase;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JdbcSQLiteConnection {
-    public static void main(String[] args) {
+public class JdbcSQLiteConnection implements ReadDataSource {
         Map<Integer, Customer> customers = new HashMap<Integer, Customer>();
+
+
+    public Map<Integer, Customer> readCustomer() throws IOException {
         try {
 // setup
             Class.forName("org.sqlite.JDBC");
@@ -23,7 +26,7 @@ public class JdbcSQLiteConnection {
                     int password = resultSet.getInt(2);
                     int amount = resultSet.getInt(3);
 
-                   System.out.println("id:"+id+" name:"+password+" price: "+amount);
+                    System.out.println("id:"+id+" name:"+password+" price: "+amount);
                 }
 // close connection
                 conn.close();
@@ -33,5 +36,6 @@ public class JdbcSQLiteConnection {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return customers;
     }
 }
