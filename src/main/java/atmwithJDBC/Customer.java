@@ -1,7 +1,5 @@
 package atmwithJDBC;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 /**
  * A bank customer with a checking and a savings account.
  */
@@ -17,18 +15,17 @@ public class Customer {
     * @param pin the personal identification number
     * @param initialBalance initial balance for account
     */
-   @Autowired
    public Customer(int customerNumber, int pin, double initialBalance) {
       this.customerNumber = customerNumber;
       this.pin = pin;
       this.account = new Account(initialBalance);
    }
-   
+
    public int getCustomerNumber() {
-	   return customerNumber;
+      return customerNumber;
    }
-   
-   /** 
+
+   /**
     * Tests if this customer matches a customer number
     * and PIN.
     * @param inputPin a personal identification number
@@ -37,8 +34,8 @@ public class Customer {
    public boolean match(int inputPin) {
       return pin == inputPin;
    }
-      
-   /** 
+
+   /**
     * Gets the account of this customer.
     * @return the account
     */

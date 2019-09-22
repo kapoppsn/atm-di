@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="sqliteDataSource" />
+    </bean>
+
+    <bean id="sqliteDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.sqlite.JDBC" />
+        <property name="url" value="jdbc:sqlite:customers.db" />
+    </bean>
+
+    <bean id="customerDaoImp" class="atmwithJDBC.CustomerDaoImp">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+    <bean id="bank2" class="atmwithJDBC.Bank">
+        <constructor-arg ref="customerDaoImp"/>
+    </bean>
+
+    <bean id="atm2" class="atmwithJDBC.ATM">
+        <constructor-arg ref="bank2"/>
+    </bean>
+
+    <bean id="atmSim" class="atmwithJDBC.ATMSimulator">
+        <constructor-arg ref="atm2"/>
+    </bean>
+
+</beans>

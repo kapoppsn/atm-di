@@ -1,7 +1,5 @@
 package atmwithJDBC;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 /**
  * A bank account has a balance that can be changed by
  * deposits and withdrawals.
@@ -12,7 +10,6 @@ public class Account {
    /**
     * Constructs a bank account with a zero balance.
     */
-   @Autowired
    public Account() {
       balance = 0;
    }
@@ -24,8 +21,8 @@ public class Account {
    public Account(double initialBalance) {
       balance = initialBalance;
    }
- 
-   /** 
+
+   /**
     * Deposits money into the account.
     * @param amount the amount of money to withdraw
     */
@@ -33,7 +30,7 @@ public class Account {
       balance = balance + amount;
    }
 
-   /** 
+   /**
     * Withdraws money from the account.
     * @param amount the amount of money to deposit
     */
@@ -41,12 +38,12 @@ public class Account {
       balance = balance - amount;
    }
 
-   /** 
+   /**
     * Gets the account balance.
     * @return the account balance
     */
    public double getBalance() {
-      return balance; 
+      return balance;
    }
 }
 

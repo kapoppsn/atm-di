@@ -1,8 +1,5 @@
 package atmwithJDBC;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,23 +7,21 @@ import java.util.Map;
 /**
  * A bank contains customers with bank accounts.
  */
-@Component
 public class Bank {
 
    private Map<Integer, Customer> customers;
-   private DataSource dataSource;
+   private CustomerDao custDao;
 
    /**
     * Constructs a bank with no customers.
     */
-   @Autowired
-   public Bank(DataSource dataSource) {
-      this.dataSource = dataSource;
+   public Bank(CustomerDao custDao) {
+      this.custDao = custDao;
       customers = new HashMap<Integer, Customer>();
    }
 
    public void initializeCustomers() throws IOException {
-      customers = dataSource.readCustomers();
+      customers = custDao.findAll();
    }
    /**
     * Adds a customer to the bank.
@@ -35,8 +30,8 @@ public class Bank {
    public void addCustomer(Customer c) {
       customers.put(c.getCustomerNumber(), c);
    }
-   
-   /** 
+
+   /**
     * Finds a customer in the bank.
     * @param number a customer number
     * @return the matching customer, or null if no customer

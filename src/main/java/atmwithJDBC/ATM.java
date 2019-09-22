@@ -1,14 +1,10 @@
 package atmwithJDBC;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 
 /**
  * An ATM that accesses a bank.
  */
-@Component
 public class ATM {
 	public static final int START = 1;
 	public static final int TRANSACT = 2;
@@ -20,9 +16,8 @@ public class ATM {
 	private Bank bank;
 
 	/**
-     * Constructs an ATM for a bank.
+	 * Constructs an ATM for a bank.
 	 */
-	@Autowired
 	public ATM(Bank bank) {
 		this.bank = bank;
 		this.customerNumber = -1;
@@ -35,7 +30,7 @@ public class ATM {
 	}
 
 	/**
-     * Resets the ATM to the initial state.
+	 * Resets the ATM to the initial state.
 	 */
 	public void reset() {
 		customerNumber = -1;
@@ -44,11 +39,11 @@ public class ATM {
 	}
 
 	/**
-     * Finds customer in bank.
-     * If found sets state to ACCOUNT, else to START.
-     * (Precondition: state is PIN)
+	 * Finds customer in bank.
+	 * If found sets state to ACCOUNT, else to START.
+	 * (Precondition: state is PIN)
 	 * @param customerNum current customer number
-     * @param pin pin being inputted
+	 * @param pin pin being inputted
 	 */
 	public void validateCustomer(int customerNum, int pin) {
 		assert state == START;
@@ -63,9 +58,9 @@ public class ATM {
 	}
 
 	/**
-     * Withdraws amount from current account.
-     * (Precondition: state is TRANSACT)
-     * @param value the amount to withdraw
+	 * Withdraws amount from current account.
+	 * (Precondition: state is TRANSACT)
+	 * @param value the amount to withdraw
 	 */
 	public void withdraw(double value) {
 		assert state == TRANSACT;
@@ -73,9 +68,9 @@ public class ATM {
 	}
 
 	/**
-     * Deposits amount to current account.
-     * (Precondition: state is TRANSACT)
-     * @param value the amount to deposit
+	 * Deposits amount to current account.
+	 * (Precondition: state is TRANSACT)
+	 * @param value the amount to deposit
 	 */
 	public void deposit(double value) {
 		assert state == TRANSACT;
@@ -83,9 +78,9 @@ public class ATM {
 	}
 
 	/**
-     * Gets the balance of the current account.
-     * (Precondition: state is TRANSACT)
-     * @return the balance
+	 * Gets the balance of the current account.
+	 * (Precondition: state is TRANSACT)
+	 * @return the balance
 	 */
 	public double getBalance() {
 		assert state == TRANSACT;
@@ -93,7 +88,7 @@ public class ATM {
 	}
 
 	/**
-     * Transfer from current customer to the customer with
+	 * Transfer from current customer to the customer with
 	 * customer number in the parameter
 	 * @param customerNum receiver customer
 	 * @param amount amount to be transferred
@@ -107,8 +102,8 @@ public class ATM {
 	}
 
 	/**
-     * Gets the current state of this ATM.
-     * @return the current state
+	 * Gets the current state of this ATM.
+	 * @return the current state
 	 */
 	public int getState() {
 		return state;
